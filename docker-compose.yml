@@ -19,7 +19,7 @@ services: # 服务
             - "8080:80"            
         container_name: nginx-node
         restart: always
-        volumes: # 映射本机 F:/nginx.conf 文件到 容器的 /etc/nginx/nginx.conf:ro 文件
+        volumes: # 映射本机 nginx.conf 文件到 容器的 /etc/nginx/nginx.conf:ro 文件
             - "/Users/leo/Desktop/docker-test/nginx.conf:/etc/nginx/nginx.conf:ro"
         networks: 
             - "my-network"
@@ -27,6 +27,18 @@ services: # 服务
             - "node"
         depends_on: # 指定依赖于哪个服务
             - node
+    mongodb:
+        image: mongo:latest
+        container_name: mongodb
+        restart: always
+        ports:
+            - 27017:27017
+        privileged: true
+        volumes:
+            - ./data/db:/data/db
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: mongo123
 networks: # 网络
     my-network: # 网络名称
         driver: bridge
