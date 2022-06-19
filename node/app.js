@@ -3,7 +3,7 @@ const os = require('os')
 const app = express()
 const mongoose = require('mongoose')
 // mongodb链接地址
-const DB_URL = 'mongodb://root:mongo123@localhost:27017/user?authSource=admin'
+const DB_URL = 'mongodb://root:mongo123@mongodb:27017/user?authSource=admin'
 // 连接数据库
 mongoose.connect(DB_URL)
 mongoose.connection.on('connect', () => {
