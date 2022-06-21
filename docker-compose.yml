@@ -16,7 +16,7 @@ services: # 服务
             - "my-network"
         command: npm run start # 覆盖容器启动后默认执行的命令
     nginx:
-        image: nginx:latest
+        image: nginx:stable-alpine
         ports: # 将本机的 8080 端口映射到容器的80端口
             - "8080:80"            
         container_name: nginx-node
@@ -30,7 +30,7 @@ services: # 服务
         depends_on: # 指定依赖于哪个服务
             - node
     mongodb:
-        image: mongo:latest
+        image: mongo:4.4.14
         container_name: mongodb
         restart: always
         networks: 
